@@ -8,7 +8,7 @@ class Matriz {
         int linha, coluna;
 
     public:
-        Matriz(int linha, int coluna) { //construtor para alocação dinâmica
+        Matriz(int linha, int coluna) { //construtor para alocaÃ§Ã£o dinÃ¢mica
             matrix = new int *[linha];
             for (int i = 0; i < linha; i++) {
                 matrix[i] = new int[coluna];

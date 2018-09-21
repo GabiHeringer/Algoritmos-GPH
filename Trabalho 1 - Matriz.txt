@@ -1,0 +1,90 @@
+#include <iostream>
+
+using namespace std;
+
+class Matriz {
+    private:
+        int **matrix;
+        int linha, coluna;
+
+    public:
+        Matriz(int linha, int coluna) { //construtor para alocação dinâmica
+            matrix = new int *[linha];
+            for (int i = 0; i < linha; i++) {
+                matrix[i] = new int[coluna];
+            }
+
+            this->coluna = coluna;
+            this->linha = linha;
+
+        }
+        ~Matriz(){ //destrutor
+            for (int i = 0; i < linha; i++){
+                delete[] matrix[i];
+            }
+            delete[] matrix;
+            cout << "\nMatriz destruida!!" << endl;
+        }
+
+        int *operator[] (int x) {
+            return matrix[x];
+
+        }
+
+        int getLinha(){
+            return linha;
+        }
+
+        int getColuna(){
+            return coluna;
+        }
+    };
+
+
+void valores (Matriz &mat){ //recebe a matriz e a preenche
+    int linha = mat.getLinha();
+    int coluna = mat.getColuna();
+
+    int i, j;
+
+    cout << "Insira os valores da matriz: " << endl;
+    for(i = 0; i < linha; i++){
+        for(j = 0; j < coluna; j++){
+            cin >> mat[i][j];
+        }
+    }
+}
+
+void impressao (Matriz &mat){//recebe a matriz e a imprime
+    int i, j;
+    int linha = mat.getLinha();
+    int coluna = mat.getColuna();
+
+    cout << "\nMatriz Inserida: " << endl;
+
+    for(i = 0; i < linha; i++){
+        for(j = 0; j < coluna; j++){
+            cout << mat[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+int main()
+{
+    int lin, col;
+
+	cout << "Este programa recebe e imprime uma matriz!" << endl;
+	cout << "\n";
+	cout << "Insira o numero de linhas e colunas, respectivamente: ";
+	cin >> lin >> col;
+
+	Matriz mat_objeto1(lin, col);
+
+    valores(mat_objeto1);
+    impressao(mat_objeto1);
+
+	return 0;
+
+}
+
+

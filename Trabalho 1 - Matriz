@@ -80,8 +80,8 @@ int main()
 
 	Matriz mat_objeto1(lin, col);
 
-    valores(mat_objeto1);
-    impressao(mat_objeto1);
+	valores(mat_objeto1);
+	impressao(mat_objeto1);
 
 	return 0;
 

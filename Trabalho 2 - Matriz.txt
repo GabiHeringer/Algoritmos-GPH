@@ -25,7 +25,7 @@ class Matriz {
        }
 
     public:
-        Matriz(int linha, int coluna) { //construtor para alocação dinâmica
+        Matriz(int linha, int coluna) { //construtor para alocaÃ§Ã£o dinÃ¢mica
 
             this->coluna = coluna;
             this->linha = linha;
@@ -123,36 +123,43 @@ int main()
 	cout << "Insira o numero de linhas e colunas da matriz 1, respectivamente: ";
 	cin >> lin1 >> col1;
 	Matriz mat_objeto1(lin1, col1);
-    cout << "Insira os valores da matriz 1: " << endl;
+    	cout << "Insira os valores da matriz 1: " << endl;
 	valores(mat_objeto1);
 
 	cout << "Insira o numero de linhas e colunas da matriz 2, respectivamente: ";
 	cin >> lin2 >> col2;
 	Matriz mat_objeto2(lin2, col2);
 	cout << "Insira os valores da matriz 2: " << endl;
-    valores(mat_objeto2);
+    	valores(mat_objeto2);
 	cout << endl;
 
 	Matriz mat_objeto_copia(mat_objeto1);
 
-    cout << endl;
-    cout << "Matriz 1:" << endl;;
-    impressao(mat_objeto1);
-    cout << endl;
-    cout << "Matriz 2:" << endl;
-    impressao(mat_objeto2);
-    cout << endl;
-    mat_objeto1 = mat_objeto2;
-    cout << "Fazendo alteracoes..." << endl << endl;
-    cout << "Copia da matriz 1, matriz 3:" << endl;
-    impressao(mat_objeto_copia);
-    cout << endl;
-    cout << "Matriz 1:" << endl;
-    impressao(mat_objeto1);
-    cout << endl << endl;
-    cout << "Matriz 2:" << endl;
-    impressao(mat_objeto2);
-    cout << endl;
+    	cout << endl;
+	
+    	cout << "Matriz 1:" << endl;;
+    	impressao(mat_objeto1);
+    	cout << endl;
+	
+    	cout << "Matriz 2:" << endl;
+    	impressao(mat_objeto2);
+    	cout << endl;
+	
+    	mat_objeto1 = mat_objeto2;
+	
+    	cout << "Fazendo alteracoes..." << endl << endl;
+	
+    	cout << "Copia da matriz 1, matriz 3:" << endl;
+    	impressao(mat_objeto_copia);
+    	cout << endl;
+    	
+	cout << "Matriz 1:" << endl;
+    	impressao(mat_objeto1);
+    	cout << endl << endl;
+   	
+	cout << "Matriz 2:" << endl;
+    	impressao(mat_objeto2);
+    	cout << endl;
 
 	return 0;
 

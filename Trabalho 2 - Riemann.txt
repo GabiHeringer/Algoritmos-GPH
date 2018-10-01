@@ -56,6 +56,8 @@ int main()
     int i;
 
     vector<double> vec;
+    
+    cout << "Este programa calcula a area aproximada abaixo de uma curva pela soma de Riemann!!" << endl;
 
     recebe_informacoes(&x_inicial, &x_final, &retangulos, &n_funcao);
 

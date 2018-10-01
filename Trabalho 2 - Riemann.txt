@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+#include <math.h>
+
+using namespace std;
+
+void recebe_informacoes (double *xinicial, double *xfinal, int *nretangulos, int *nfuncao){
+
+    cout << "Escolha o tipo de funcao: " << endl;
+    cout << "1 - Linear\n2 - Quadratica" << endl;
+
+    while (*nfuncao != 1 && *nfuncao != 2)
+    {
+        cin >> *nfuncao;
+        if (*nfuncao != 1 && *nfuncao != 2){
+            cout << "Digite novamente! Escolha invalida" << endl;
+        }
+    }
+
+
+    cout << "Digite o intervalo de integracao (x inicial e x final): ";
+    cin >> *xinicial >> *xfinal;
+
+    cout << "Digite o numero de retangulos: ";
+    cin >> *nretangulos;
+
+}
+
+double linear (double x, vector<double>parametro){
+    return parametro[0]*x + parametro[1];
+}
+
+double quadratica (double x, vector<double>parametro){
+    return x*x*parametro[0] + x*parametro[1] + parametro[2];
+}
+
+double Riemann (double (*func)(double, vector<double>), vector<double>parametros, int n_retangulos, double x_inicial, double x_final){
+    double area = 0;
+    double deltax = (fabs(x_inicial - x_final))/n_retangulos;
+    double i;
+    double x = x_inicial + deltax;
+
+    for (i = 0; i < n_retangulos; i++){
+        area += (deltax*(func(x, parametros)));
+        x += deltax;
+    }
+
+    return area;
+}
+
+int main()
+{
+    double area;
+    int n_funcao = 3, retangulos;
+    double x_inicial, x_final, aux;
+    int i;
+
+    vector<double> vec;
+
+    recebe_informacoes(&x_inicial, &x_final, &retangulos, &n_funcao);
+
+    cout << "Digite os parametros: ";
+
+    if(n_funcao == 1){
+        for(i = 0; i < 2; i++){
+            cin >> aux;
+            vec.push_back(aux);
+        }
+        area = Riemann(linear, vec, retangulos, x_inicial, x_final);
+    }
+    else{
+        for(i = 0; i < 3; i++){
+            cin >> aux;
+            vec.push_back(aux);
+        }
+        area = Riemann(quadratica, vec, retangulos, x_inicial, x_final);
+    }
+
+    cout << "A area da funcao e: " << area << endl;
+
+    return 0;
+}

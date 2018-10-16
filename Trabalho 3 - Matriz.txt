@@ -1,0 +1,268 @@
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+class Matriz{
+    public:
+        Matriz (int linha,int coluna);
+        Matriz (const Matriz &matriz_referencia);
+        Matriz& operator=(const Matriz &matriz);
+        Matriz operator+(Matriz &matriz);
+        Matriz operator-(Matriz &matriz);
+        Matriz operator*(Matriz &matriz);
+
+        void zero();
+
+        int *operator[] (int x);
+        int getLinha();
+        int getColuna();
+
+        ~Matriz();
+
+    private:
+        void allocate_function(int linha, int coluna, int ***matriz);
+        void deallocate_function(int **matriz);
+
+    protected:
+        int **matrix;
+        int linha, coluna;
+};
+
+ostream& operator<<(ostream &os, Matriz& matriz);
+istream& operator>>(istream &is, Matriz& matriz);
+
+
+int main()
+{
+    int lin1, col1, lin2, col2;
+    int operacao = 1;
+
+	cout << "Este programa recebe e faz operacoes com matrizes!" << endl;
+	cout << endl;
+
+    cout << "Insira o numero de linhas e colunas da matriz 1, respectivamente: ";
+    cin >> lin1 >> col1;
+    Matriz mat_objeto1(lin1, col1);
+    cout << "Insira os valores da matriz 1: " << endl;
+    cin >> mat_objeto1;
+    system("cls");
+
+    cout << "Insira o numero de linhas e colunas da matriz 2, respectivamente: ";
+    cin >> lin2 >> col2;
+    Matriz mat_objeto2(lin2, col2);
+    cout << "Insira os valores da matriz 2: " << endl;
+    cin >> mat_objeto2;
+    cout << endl;
+    system("cls");
+
+
+    while (operacao != 0){
+        cout << endl << "Digite o numero da operacao que deseja: " << endl << "1 - Soma";
+        cout << endl << "2 - Subtracao" << endl << "3 - Multiplicacao" << endl << "4 - Copia" << endl;
+        cout << "5 - Igualar" << endl << "6 - Finalizar o programa." << endl;
+        cin >> operacao;
+
+        cout << "Matriz 1:" << endl;;
+        cout << mat_objeto1 << endl;
+        cout << endl;
+        cout << "Matriz 2:" << endl;
+        cout << mat_objeto2 << endl;
+        cout << endl;
+
+        if (operacao == 1){
+            //Matriz copia_soma(mat_objeto1 + mat_objeto2);
+            Matriz copia_soma(lin1, col1);
+            copia_soma = mat_objeto1 + mat_objeto2;
+            cout << "Soma das matrizes 1 e 2: " << endl << copia_soma << endl;
+        }else if (operacao == 2){
+            Matriz copia_subtracao(mat_objeto1 - mat_objeto2);
+            cout << "Subtracao das matrizes 1 e 2: " << endl << copia_subtracao << endl;
+        }else if (operacao == 3){
+            Matriz copia_multiplicacao(mat_objeto1 * mat_objeto2);
+            cout << "Multiplicacao das matrizes 1 e 2: " << endl << copia_multiplicacao << endl;
+        }else if (operacao == 4){
+            Matriz mat_objeto_copia(mat_objeto1);
+            cout << "Copia da matriz 1, matriz 3 :" << endl << mat_objeto_copia << endl;
+        }else if (operacao == 5){
+            mat_objeto1 = mat_objeto2;
+            cout << "Matriz 1 igualada a matriz 2: " << endl << mat_objeto1;
+        }else if (operacao == 6){
+            operacao = 0;
+        }
+    }
+
+	return 0;
+
+}
+
+ostream& operator<<(ostream &os, Matriz &matriz){ //overload do operador << para imprimir a matriz
+    for(int i = 0; i < matriz.getLinha(); i++){
+        for(int j = 0; j < matriz.getColuna(); j++){
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;;
+    }
+    return os;
+}
+
+istream& operator>>(istream &is,Matriz &matriz){ //overload do operador >> para dar valores a matriz
+    for(int i = 0; i < matriz.getLinha(); i++){
+        for(int j = 0; j < matriz.getColuna(); j++){
+            cin >> matriz[i][j];
+        }
+    }
+    return is;
+}
+
+Matriz::Matriz(int lin, int col) { //construtor para alocação dinâmica
+    coluna = col;
+    linha = lin;
+
+    allocate_function(linha, coluna, &matrix);
+
+}
+
+Matriz::Matriz(const Matriz &matriz_referencia){ //construtor de copia
+
+    linha = matriz_referencia.linha;
+    coluna = matriz_referencia.coluna;
+
+    allocate_function(linha, coluna, &matrix);
+    for (int i = 0; i < linha; i++){
+        for(int j = 0; j < coluna; j++){
+            matrix[i][j] = matriz_referencia.matrix[i][j];
+        }
+    }
+
+}
+
+Matriz::~Matriz(){ //destrutor
+    deallocate_function(matrix);
+    cout << "Matriz destruida!!" << endl;
+}
+
+
+void Matriz::allocate_function(int linha, int coluna, int ***matriz){
+    int **mat;
+    mat = new int *[linha];
+    for (int i = 0; i < linha; i++){
+        mat[i] = new int [coluna];
+    }
+    *matriz = mat;
+}
+
+void Matriz::deallocate_function(int **matriz){
+    for (int i = 0; i < coluna; i++){
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+}
+
+void Matriz::zero (){
+    for(int i = 0; i < linha; i++){
+        for(int j = 0; j < coluna; j++){
+            matrix[i][j] = 0;
+        }
+    }
+}
+
+int* Matriz::operator[] (int x) {
+    return matrix[x];
+
+}
+
+Matriz& Matriz::operator= (const Matriz &matriz){
+
+    int lin = matriz.linha;
+    int col = matriz.coluna;
+
+    deallocate_function(matrix);
+    allocate_function(lin, col, &matrix);
+
+    for (int i = 0; i < lin; i++){
+        for(int j = 0; j < col; j++){
+            matrix[i][j] = matriz.matrix[i][j];
+        }
+    }
+    linha = lin;
+    coluna = col;
+
+    return *this;
+}
+
+Matriz Matriz::operator+ (Matriz &matriz){
+
+    int lin = matriz.linha;
+    int col = matriz.coluna;
+
+    if ((lin != this->linha) || (col != this->coluna)){
+        throw invalid_argument("Numero de linhas e colunas devem ser iguais!");
+    }
+
+    Matriz aux (lin, col);
+
+    for(int i = 0; i < lin; i++){
+        for(int j = 0; j < col; j++){
+            aux.matrix[i][j] = matrix[i][j] + matriz.matrix[i][j];
+        }
+    }
+
+    return aux;
+}
+
+Matriz Matriz::operator- (Matriz &matriz){
+
+    int lin = matriz.linha;
+    int col = matriz.coluna;
+
+    if ((lin != this->linha) || (col != this->coluna)){
+        throw invalid_argument("Numero de linhas e colunas devem ser iguais!");
+    }
+
+    Matriz aux (lin, col);
+
+    for(int i = 0; i < lin; i++){
+        for(int j = 0; j < col; j++){
+            aux.matrix[i][j] = matrix[i][j] - matriz.matrix[i][j];
+        }
+    }
+
+    return aux;
+}
+
+Matriz Matriz::operator* (Matriz &matriz){
+
+    int lin1 = linha;
+    int col1 = coluna;
+
+    int lin2 = matriz.linha;
+    int col2 = matriz.coluna;
+
+    if (col1 != lin2){
+        throw invalid_argument("Numero de colunas da matriz 1 e linhas da matriz 2 devem ser iguais!");
+    }
+
+    Matriz aux (lin1, col2);
+    aux.zero();
+
+    for(int i = 0; i < lin1; i++){
+        for(int j = 0; j < col2; j++){
+            for(int k = 0; k < col1; k++){
+                aux.matrix[i][j] += matrix[i][k] * matriz.matrix[k][j];
+            }
+        }
+    }
+
+    return aux;
+}
+
+
+
+Matriz::getLinha(){
+    return linha;
+}
+
+Matriz::getColuna(){
+    return coluna;
+}

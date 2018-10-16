@@ -115,7 +115,7 @@ istream& operator>>(istream &is,Matriz &matriz){ //overload do operador >> para 
     return is;
 }
 
-Matriz::Matriz(int lin, int col) { //construtor para alocação dinâmica
+Matriz::Matriz(int lin, int col) { //construtor para alocaÃ§Ã£o dinÃ¢mica
     coluna = col;
     linha = lin;
 

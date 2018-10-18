@@ -259,10 +259,10 @@ Matriz Matriz::operator* (Matriz &matriz){
 
 
 
-Matriz::getLinha(){
+int Matriz::getLinha(){
     return linha;
 }
 
-Matriz::getColuna(){
+int Matriz::getColuna(){
     return coluna;
 }

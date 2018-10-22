@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void recebe_informacoes (double *xinicial, double *xfinal, int *nretangulos, int *nfuncao){
+void recebe_informacoes (double *xinicial, double *xfinal, int *nretangulos, int *nfuncao){ //função que recebe informações sobre a função a ser integrada
 
     cout << "Escolha o tipo de funcao: " << endl;
     cout << "1 - Linear\n2 - Quadratica" << endl;
@@ -26,16 +26,16 @@ void recebe_informacoes (double *xinicial, double *xfinal, int *nretangulos, int
 
 }
 
-double linear (double x, vector<double>parametro){
+double linear (double x, vector<double>parametro){ //calcula y = ax + b
     return parametro[0]*x + parametro[1];
 }
 
-double quadratica (double x, vector<double>parametro){
+double quadratica (double x, vector<double>parametro){ //calcula y = ax² + bx + c
     return x*x*parametro[0] + x*parametro[1] + parametro[2];
 }
 
-double Riemann (double (*func)(double, vector<double>), vector<double>parametros, int n_retangulos, double x_inicial, double x_final){
-    double area = 0;
+double Riemann (double (*func)(double, vector<double>), vector<double>parametros, int n_retangulos, double x_inicial, double x_final){ //função que calcula a área aproximada abaixo da curva.
+    double area = 0;                                                                                                                   //utiliza o método de Riemann com retângulos aproximantes.
     double deltax = (fabs(x_inicial - x_final))/n_retangulos;
     double i;
     double x = x_inicial + deltax;

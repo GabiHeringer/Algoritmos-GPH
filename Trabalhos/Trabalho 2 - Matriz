@@ -8,7 +8,7 @@ class Matriz {
         int linha, coluna;
 
     private:
-        void allocate_function(int linha, int coluna, int ***matriz){
+        void allocate_function(int linha, int coluna, int ***matriz){ //função para alocar memória dinamicamente
             int **mat;
             mat = new int *[linha];
             for (int i = 0; i < linha; i++){
@@ -17,7 +17,7 @@ class Matriz {
             *matriz = mat;
        }
 
-       void deallocate_function(int **matriz){
+       void deallocate_function(int **matriz){ //função para desalocar memória
             for (int i = 0; i < coluna; i++){
                 delete[] matrix[i];
             }
@@ -35,10 +35,10 @@ class Matriz {
         }
 
 
-        Matriz (Matriz &matriz_referencia){ //construtor de copia
+        Matriz (Matriz &matriz_referencia){ //construtor por cópia de outro objeto
 
-            this->linha = matriz_referencia.getLinha();
-            this->coluna = matriz_referencia.getColuna();
+            this->linha = matriz_referencia.linha;
+            this->coluna = matriz_referencia.coluna;
 
             allocate_function(linha, coluna, &matrix);
             for (int i = 0; i < linha; i++){
@@ -48,27 +48,27 @@ class Matriz {
             }
 
         }
-        ~Matriz(){ //destrutor
+        ~Matriz(){ //destrutor de objetos
             deallocate_function(matrix);
             cout << "Matriz destruida!!" << endl;
         }
 
-        int *operator[] (int x) {
+        int *operator[] (int x) { //Overload do operador [] para acesso direto aos valores da matriz
             return matrix[x];
 
         }
 
-        Matriz &operator= (Matriz &matriz){
+        Matriz &operator= (Matriz &matriz){ //Overload do operador = que permite igualar dois objetos diretamente
 
-            int lin = matriz.getLinha();
-            int col = matriz.getColuna();
+            int lin = matriz.linha;
+            int col = matriz.coluna;
 
             deallocate_function(matrix);
             allocate_function(lin, col, &matrix);
 
             for (int i = 0; i < lin; i++){
                 for(int j = 0; j < col; j++){
-                    this->matrix[i][j] = matriz[i][j];
+                    matrix[i][j] = matriz[i][j];
                 }
             }
             this->linha = lin;
@@ -76,11 +76,11 @@ class Matriz {
             return *this;
         }
 
-        int getLinha(){
+        int getLinha(){ //método para obter o número de linhas da matriz
             return linha;
         }
 
-        int getColuna(){
+        int getColuna(){ //método para obter o número de colunas da matriz
             return coluna;
         }
 

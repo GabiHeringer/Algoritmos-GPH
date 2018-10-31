@@ -13,9 +13,9 @@ int main(int argc, char **argv) {
     
     ::testing::InitGoogleTest(&argc, argv);
     Matriz mat (2,2);
-    cout << "Digite valores para a matriz:" << endl;
+    cout << "Digite valores para a matriz 2x2:" << endl;
     cin >> mat;
-    cout << "Matriz digitada: " << endl << mat;
+    cout << "Matriz digitada:  //Overload do operador <<" << endl << mat;
     cout << "Executando testes para os operadores..." << endl;
     return RUN_ALL_TESTS();
 

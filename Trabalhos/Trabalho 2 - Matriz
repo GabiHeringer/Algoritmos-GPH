@@ -115,9 +115,9 @@ void impressao (Matriz &mat){//recebe a matriz e a imprime
 }
 int main()
 {
-    int lin1, col1, lin2, col2;
+    int lin1, col1, lin2, col2;		
 
-	cout << "Este programa recebe e imprime uma matriz!" << endl;
+	cout << "Este programa recebe e imprime uma matriz!" << endl; //menu com opcões para o usuário testar os métodos e funções
 	cout << "\n";
 
 	cout << "Insira o numero de linhas e colunas da matriz 1, respectivamente: ";

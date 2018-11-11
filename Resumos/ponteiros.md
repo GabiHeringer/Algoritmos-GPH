@@ -55,11 +55,11 @@ void func (int *ponteiro){
 }
 
 int main(){ 
-int a = 3;
-func(&a);
-cout << a;
+  int a = 3;
+  func(&a);
+  cout << a;
 
-return 0;
+  return 0;
 }
 ```
 *Neste caso, a saída será 5, pois modificamos "a" pelo seu endereço de memória.*
@@ -92,7 +92,9 @@ int main()
 *Neste, a saída será 2, correspondendo ao segundo elemento do vetor.*
 
 6. Ponteiros para funções: (³)
-- Um recurso dos ponteiros é fazê-los apontar para funções, pois elas também tem um endereço fixo. Isto pode ser utilizado para uma certa optimização do código, como receber uma função como parâmetro para outra função.*
+- Um recurso dos ponteiros é fazê-los apontar para funções, pois elas também tem um endereço fixo. Isto pode ser utilizado para uma certa optimização do código, como receber uma função como parâmetro para outra função.
+- A declaração é feita através do corpo: tipo_da_função (*ponteiro)(tipo_do_parâmetro), onde o tipo da função é o tipo que ela retorna, e o tipo do parâmetro é o tipo que ela recebe. 
+
 ```c++
 void soma (int *n){
     *n += 8;
@@ -102,7 +104,7 @@ void subtrai (int *n){
     *n -= 8;
 }
 
-int modifica_numero (void (*func)(int*), int n){ //a declaração é feita através do (tipo_da_função (*ponteiro)(tipo_do_parâmetro))
+int modifica_numero (void (*func)(int*), int n){ 
     func(&n);
     return n;
 }

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <gtest/gtest.h>
-#include "matriz.h"
+#include "matriz.cpp"
 #include "testes.h"
 
 using namespace std;

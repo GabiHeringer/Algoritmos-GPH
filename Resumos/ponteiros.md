@@ -48,7 +48,7 @@ int main(){
 ```
 *Neste caso, a saída será 3, conteúdo da variável a qual o ponteiro aponta.*
 
-4. Podemos também passar um ponteiro como parâmetro pra uma função, assim modificamos a variável para a qual ele aponta:
+4. Podemos também passar um ponteiro como parâmetro para uma função, assim modificamos a variável para a qual ele aponta:
 ```c++
 void func (int *ponteiro){ 
   *ponteiro = 5;

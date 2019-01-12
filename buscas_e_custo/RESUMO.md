@@ -50,7 +50,7 @@
   ## Análise
   Vamos utilizar agora, a análise experimental para encontrar a complexidade de cada um dos algorítimos acima e chegar à conclusão de qual é o melhor para se utilizar. 
   
-  Para isso, os algorítimos serão executados contando o número de comparações realizadas para achar um elemento em um vetor de tamanho n. Assim, utilizaremos as buscas para achar elementos aleatórios em vetores de tamanhos aleatórios que vão de 10 até 100 0000, de 500 em 500. Em um arquivo, será impresso três colunas: a primeira, o tamanho do vetor; a segunda, o número de comprações que a busca ingênua fez; a terceira, o número de comparações que a binária fez.
+  Para isso, os algorítimos serão executados contando o número de comparações realizadas para achar um elemento em um vetor de tamanho n. Assim, utilizaremos as buscas para achar elementos aleatórios em vetores de tamanhos aleatórios que vão de 10 até 100 0000, de 500 em 500. Em um arquivo, será impresso três colunas: a primeira, o tamanho do vetor; a segunda, o número de comprações que a busca ingênua fez; a terceira, o número de comparações que a binária fez. Os códigos das buscas e scripts dos gráficos no gnuplot encontram-se na pasta buscas_e_custos. 
   
   Assim, plotaremos dois gráficos tamanho x número de comparações e estudaremos o comportamento de cada uma.
   
@@ -58,8 +58,10 @@
   ![Gráfico 1](https://github.com/GabiHeringer/Algoritmos-GPH/blob/master/buscas_e_custo/Gr%C3%A1ficos/ingenua-1.jpg)
   
   Analisando o gráfico, vemos que apesar dos pontos fora da curva, a busca ingênua apresenta um corportamento linear. Fitamos a curva f(x) = ax + b e assim chegamos à f(x) no gráfico com os parâmetros:
-  a =
-  b =
+  
+  a = 0.689093
+  
+  b = 1.00625
   
   Como o comportamento vai ficando cada vez mais linear conforme n aumenta, desprezamos os fatores multiplicativos e somatórios, obtendo uma relação com a Big O Notation. Por fim, chegamos à conclusão de que a busca ingênua tem uma complexidade de O(n).
   
@@ -67,8 +69,10 @@
   ![Gráfico 1](https://github.com/GabiHeringer/Algoritmos-GPH/blob/master/buscas_e_custo/Gr%C3%A1ficos/binaria-1.jpg)
   
   Analisando o gráfico, podemos perceber que o comportamento da busca binária é logarítimico. Foi fitada a curva f(x) = a log (x) + b e assim chegamos à f(x) no gráfico com os parâmetros:
-  a =
-  b =
+  
+  a = 1.41012
+  
+  b = 0.354509
   
   Do mesmo jeito que na ingênua, como os valores de n ficam muito grandes e o comportamento vai se moldando cada vez mais, podemos desprezar os fatores multiplicativos e somatórios. Assim, relacionando com a Big O Notation temos que a complexidade da Busca Binária é O(log n).
   
@@ -79,4 +83,12 @@
   
   Conclui-se, dessa forma, que as análises apresentadas aqui e tantas outras que existem se fazem fundamental na escolha da melhor solução para qualquer problema. Há uma infinidade de maneiras de se usar a tecnologia e a partir da teoria por trás dela conseguimos utilizar da melhor maneira.
   
+  # Referências Bibliográficas
+  Análise de Complexidade de Algorítimos. Universidade de São Paulo. Disponível em: http://wiki.icmc.usp.br/images/d/de/Analise_complexidade.pdf. Acesso em: 01 de Janeiro, 2019.
+  
+  Análise de Algorítimos. Universidade Federal de Uberlândia. Disponível em: http://www.facom.ufu.br/~backes/gsi011/Aula01-AnaliseAlgoritmos_01.pdf. Acesso em: 01 de Janeiro, 2019.
+  
+  Barrére, Eduardo. Análise e Projeto de Algorítimos. Universidade Federal de Juiz de Fora. Disponível em: http://www.ufjf.br/eduardo_barrere/files/2013/03/APA_2013_aula2.pdf. Acesso em: 01 de Janeiro, 2019.
+  
+  Peter Laube, Klaus. Análise de algoritmos: Análise Assintótica.  Profissionais TI. Disponível em: https://www.profissionaisti.com.br/2016/10/analise-de-algoritmos-analise-assintotica/. Acesso em: 01 de Janeiro, 2019.
   

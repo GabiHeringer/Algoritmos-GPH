@@ -53,3 +53,30 @@
   Para isso, os algorítimos serão executados contando o número de comparações realizadas para achar um elemento em um vetor de tamanho n. Assim, utilizaremos as buscas para achar elementos aleatórios em vetores de tamanhos aleatórios que vão de 10 até 100 0000, de 500 em 500. Em um arquivo, será impresso três colunas: a primeira, o tamanho do vetor; a segunda, o número de comprações que a busca ingênua fez; a terceira, o número de comparações que a binária fez.
   
   Assim, plotaremos dois gráficos tamanho x número de comparações e estudaremos o comportamento de cada uma.
+  
+  ### Ingênua
+  ![Gráfico 1](https://github.com/GabiHeringer/Algoritmos-GPH/blob/master/buscas_e_custo/Gr%C3%A1ficos/ingenua-1.jpg)
+  
+  Analisando o gráfico, vemos que apesar dos pontos fora da curva, a busca ingênua apresenta um corportamento linear. Fitamos a curva f(x) = ax + b e assim chegamos à f(x) no gráfico com os parâmetros:
+  a =
+  b =
+  
+  Como o comportamento vai ficando cada vez mais linear conforme n aumenta, desprezamos os fatores multiplicativos e somatórios, obtendo uma relação com a Big O Notation. Por fim, chegamos à conclusão de que a busca ingênua tem uma complexidade de O(n).
+  
+  ### Binária
+  ![Gráfico 1](https://github.com/GabiHeringer/Algoritmos-GPH/blob/master/buscas_e_custo/Gr%C3%A1ficos/binaria-1.jpg)
+  
+  Analisando o gráfico, podemos perceber que o comportamento da busca binária é logarítimico. Foi fitada a curva f(x) = a log (x) + b e assim chegamos à f(x) no gráfico com os parâmetros:
+  a =
+  b =
+  
+  Do mesmo jeito que na ingênua, como os valores de n ficam muito grandes e o comportamento vai se moldando cada vez mais, podemos desprezar os fatores multiplicativos e somatórios. Assim, relacionando com a Big O Notation temos que a complexidade da Busca Binária é O(log n).
+  
+  # Conclusão
+  Apesar de os gráficos não serem muito precisos, o que já se espera de uma análise experimental, foi possível chegar a uma notação Big O Notation que molda o comportamento do algorítimo. Devemos lembrar que estes resultados podem ser diferentes em outras máquinas, mas os valores sempre seguirão o padrão linear para a ingênua e logarítimica para a binária.
+  
+  Assim, concluímos que a busca binária é mais eficiente que a ingênua, demanda menos tempo e menos recursos computacionais, o que já era esperado já que a binária diminui o tamanho da entrada de dados continuamente.
+  
+  Conclui-se, dessa forma, que as análises apresentadas aqui e tantas outras que existem se fazem fundamental na escolha da melhor solução para qualquer problema. Há uma infinidade de maneiras de se usar a tecnologia e a partir da teoria por trás dela conseguimos utilizar da melhor maneira.
+  
+  
